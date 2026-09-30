@@ -19,7 +19,7 @@
     }
 
     .counter {
-      text-align: center;
+      text-align: left;
       padding: 30px 20px;
     }
 
@@ -55,11 +55,13 @@
   </div>
 
   <script>
+    // Starting date: 17 August 2026
     const startDate = new Date(2026, 7, 17);
 
     function updateCounter() {
       const today = new Date();
 
+      // Compare calendar dates rather than exact times
       const start = new Date(
         startDate.getFullYear(),
         startDate.getMonth(),
@@ -72,8 +74,10 @@
         today.getDate()
       );
 
+      // Calculate difference in milliseconds
       const difference = current - start;
 
+      // Convert milliseconds to days
       const days = Math.floor(
         difference / (1000 * 60 * 60 * 24)
       );
@@ -81,6 +85,7 @@
       document.getElementById("days-count").textContent = days;
     }
 
+    // Update when the page loads
     updateCounter();
 
     // Check again every hour
