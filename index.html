@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Days Counter</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: transparent;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Helvetica, Arial, sans-serif;
+    }
+
+    .counter {
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    .number {
+      font-size: 72px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: -3px;
+      color: #37352f;
+    }
+
+    .label {
+      margin-top: 8px;
+      font-size: 18px;
+      font-weight: 500;
+      color: #787774;
+    }
+
+    .description {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #9b9a97;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="counter">
+    <div class="number" id="days-count">0</div>
+    <div class="label">days</div>
+    <div class="description">since 17 August 2026</div>
+  </div>
+
+  <script>
+    const startDate = new Date(2026, 7, 17);
+
+    function updateCounter() {
+      const today = new Date();
+
+      const start = new Date(
+        startDate.getFullYear(),
+        startDate.getMonth(),
+        startDate.getDate()
+      );
+
+      const current = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+      );
+
+      const difference = current - start;
+
+      const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+      );
+
+      document.getElementById("days-count").textContent = days;
+    }
+
+    updateCounter();
+
+    // Check again every hour
+    setInterval(updateCounter, 60 * 60 * 1000);
+  </script>
+
+</body>
+</html>
